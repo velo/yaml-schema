@@ -15,7 +15,7 @@ public class ServicesTest extends AbstractBaseTorqueBoxTest {
             fail( "Should have failed." );
         } catch (SchemaException e) {
             assertEquals( "Schema for field singleton does not accept mrplow of " +
-                    "type class java.lang.String as input for type boolean",
+                    "type class java.lang.String as input for type bool",
                     e.getCause().getMessage() );
         }
     }

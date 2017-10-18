@@ -39,11 +39,11 @@ public class RubyTest extends AbstractBaseTorqueBoxTest {
             fail( "Should have failed." );
         } catch (Exception e) {
             assertEquals( "Schema for field debug does not accept cmontgomery-burns of type class " +
-                    "java.lang.String as input for type boolean",
+                    "java.lang.String as input for type bool",
                     e.getMessage() );
         }
     }
-    
+
     @Test
     public void testInvalidBadInteractive() throws Exception {
         try {
@@ -51,11 +51,11 @@ public class RubyTest extends AbstractBaseTorqueBoxTest {
             fail( "Should have failed." );
         } catch (Exception e) {
             assertEquals( "Schema for field interactive does not accept ham of type class " +
-                    "java.lang.String as input for type boolean",
+                    "java.lang.String as input for type bool",
                     e.getMessage() );
         }
     }
-    
+
     @Test
     public void testInvalidBadProfileApi() throws Exception {
         try {
@@ -63,7 +63,7 @@ public class RubyTest extends AbstractBaseTorqueBoxTest {
             fail( "Should have failed." );
         } catch (Exception e) {
             assertEquals( "Schema for field profile_api does not accept cheese of type class " +
-                    "java.lang.String as input for type boolean",
+                    "java.lang.String as input for type bool",
                     e.getMessage() );
         }
     }

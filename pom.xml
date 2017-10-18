@@ -1,32 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.projectodd</groupId>
-  <artifactId>yaml-schema</artifactId>
-  <version>0.3-SNAPSHOT</version>
 
   <parent>
     <groupId>org.jboss</groupId>
     <artifactId>jboss-parent</artifactId>
     <version>6-beta-1</version>
   </parent>
+  <groupId>org.projectodd</groupId>
+  <artifactId>yaml-schema</artifactId>
+  <version>0.3-SNAPSHOT</version>
 
-  <description>
-    YAML schema library for Java
-  </description>
-
-  <scm>
-    <connection>scm:git:git://github.com/projectodd/yaml-schema-release.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/projectodd/yaml-schema-release.git</developerConnection>
-    <url>http://github.com/projectodd/yaml-schema-release</url>
-  </scm>
-
-  <developers>
-    <developer>
-      <id>dobozysaurus</id>
-      <name>Mike Dobozy</name>
-      <email>dobozysaurus@gmail.com</email>
-    </developer>
-  </developers>
+  <description>YAML schema library for Java</description>
 
   <dependencies>
     <dependency>
@@ -43,34 +28,10 @@
     <dependency>
       <groupId>org.jboss.logging</groupId>
       <artifactId>jboss-logging</artifactId>
-      <scope>provided</scope>
       <version>3.1.0.CR2</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
-
-
-  <profiles>
-    <profile>
-      <id>release-staging</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <properties>
-        <jboss.releases.repo.url>dav:https://repository-projectodd.forge.cloudbees.com/staging</jboss.releases.repo.url>
-        <jboss.snapshots.repo.url>dav:https://repository-projectodd.forge.cloudbees.com/staging</jboss.snapshots.repo.url>
-      </properties>
-    </profile>
-    <profile>
-      <id>release</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <properties>
-        <jboss.releases.repo.url>dav:https://repository-projectodd.forge.cloudbees.com/release</jboss.releases.repo.url>
-        <jboss.snapshots.repo.url>dav:https://repository-projectodd.forge.cloudbees.com/release</jboss.snapshots.repo.url>
-      </properties>
-    </profile>
-  </profiles>
 
   <build>
     <plugins>
@@ -112,5 +73,42 @@
       </plugin>
     </plugins>
   </reporting>
+
+  <developers>
+    <developer>
+      <id>dobozysaurus</id>
+      <name>Mike Dobozy</name>
+      <email>dobozysaurus@gmail.com</email>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/projectodd/yaml-schema-release.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/projectodd/yaml-schema-release.git</developerConnection>
+    <url>http://github.com/projectodd/yaml-schema-release</url>
+  </scm>
+
+  <profiles>
+    <profile>
+      <id>release-staging</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <jboss.releases.repo.url>dav:https://repository-projectodd.forge.cloudbees.com/staging</jboss.releases.repo.url>
+        <jboss.snapshots.repo.url>dav:https://repository-projectodd.forge.cloudbees.com/staging</jboss.snapshots.repo.url>
+      </properties>
+    </profile>
+    <profile>
+      <id>release</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <jboss.releases.repo.url>dav:https://repository-projectodd.forge.cloudbees.com/release</jboss.releases.repo.url>
+        <jboss.snapshots.repo.url>dav:https://repository-projectodd.forge.cloudbees.com/release</jboss.snapshots.repo.url>
+      </properties>
+    </profile>
+  </profiles>
 
 </project>

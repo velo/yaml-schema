@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2017 Marvin Herman Froeder (marvin@marvinformatics.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.projectodd.yaml.schema.types;
 
 import java.util.HashMap;
@@ -20,10 +35,12 @@ public class TypeFactory {
             Map<String, Object> yamlMap = (Map<String, Object>) yamlData;
             if (yamlMap.containsKey( "#root" )) {
                 root = buildType( "#root", yamlMap.get( "#root" ) );
-            } else {
+            }
+            else {
                 root = new MapType();
             }
-        } else {
+        }
+        else {
             root = new MapType();
 
         }
@@ -83,7 +100,8 @@ public class TypeFactory {
         }
         else if (yamlData instanceof Map) {
             return getSchemaTypeId( MapType.class );
-        } else {
+        }
+        else {
             return getSchemaTypeId( StringType.class );
         }
     }

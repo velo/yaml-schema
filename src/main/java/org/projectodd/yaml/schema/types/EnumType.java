@@ -18,9 +18,10 @@ package org.projectodd.yaml.schema.types;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.logging.Logger;
 import org.projectodd.yaml.SchemaException;
 import org.projectodd.yaml.schema.metadata.DependencyIndexer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EnumType extends AbstractBaseType {
 
@@ -54,7 +55,7 @@ public class EnumType extends AbstractBaseType {
 
     @Override
     public void validateType(DependencyIndexer indexer, Object value) throws SchemaException {
-        log.debugf( "Validating value %s against enum values %s.", value, values );
+        log.debug( "Validating value {} against enum values {}.", value, values );
         boolean found = false;
         for (int i = 0; i < values.size() && !found; i++) {
             Object enumValue = values.get( i );
@@ -69,6 +70,6 @@ public class EnumType extends AbstractBaseType {
 
     }
 
-    private static Logger log = Logger.getLogger( EnumType.class );
+    private static Logger log = LoggerFactory.getLogger( EnumType.class );
 
 }

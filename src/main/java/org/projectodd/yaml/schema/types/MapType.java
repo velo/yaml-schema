@@ -19,9 +19,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.logging.Logger;
 import org.projectodd.yaml.SchemaException;
 import org.projectodd.yaml.schema.metadata.DependencyIndexer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MapType extends AbstractCollectionType {
 
@@ -90,7 +91,7 @@ public class MapType extends AbstractCollectionType {
                         throw new SchemaException( "Unrecognized field: " + key );
                     }
                     else {
-                        log.debugf( "Map for field %s allows arbitrary keys.", getName() );
+                        log.debug( "Map for field {} allows arbitrary keys.", getName() );
                         if (valueTypes != null) {
                             validateValueTypes( indexer, key, yamlData );
                         }
@@ -120,6 +121,6 @@ public class MapType extends AbstractCollectionType {
         }
     }
 
-    private static final Logger log = Logger.getLogger( MapType.class );
+    private static final Logger log = LoggerFactory.getLogger( MapType.class );
 
 }

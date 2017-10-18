@@ -21,14 +21,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.logging.Logger;
 import org.projectodd.yaml.SchemaException;
 import org.projectodd.yaml.schema.metadata.Dependency;
 import org.projectodd.yaml.schema.metadata.DependencyIndexer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractBaseType {
 
-    private static Logger log = Logger.getLogger( AbstractBaseType.class );
+    private static Logger log = LoggerFactory.getLogger( AbstractBaseType.class );
 
     private static final String OPTIONAL_PREFIX = "-";
 
@@ -40,7 +41,7 @@ public abstract class AbstractBaseType {
 
     private boolean required = true;
 
-    private List<Dependency> dependencies = new ArrayList<Dependency>( 10 );
+    private final List<Dependency> dependencies = new ArrayList<Dependency>( 10 );
 
     abstract AbstractBaseType build(Object yamlData) throws SchemaException;
 
@@ -76,7 +77,7 @@ public abstract class AbstractBaseType {
         }
 
         if (yamlData instanceof Map) {
-            Map<String, Object> yamlMap = asTypedMap( yamlData );
+            final Map<String, Object> yamlMap = asTypedMap( yamlData );
             if (yamlMap.containsKey( "required" )) {
                 required = Boolean.valueOf( yamlMap.get( "required" ).toString() );
                 yamlMap.remove( "required" );
@@ -87,29 +88,29 @@ public abstract class AbstractBaseType {
             }
             initializeDependencies( yamlMap );
         }
-        log.debugf( "initialized %s field %s.", (required ? "required" : "optional"), this.name );
+        log.debug( "initialized {} field {}.", (required ? "required" : "optional"), this.name );
         return this;
     }
 
     public void initializeDependencies(Map<String, Object> yamlMap) throws SchemaException {
-        Object deps = yamlMap.get( "dependencies" );
+        final Object deps = yamlMap.get( "dependencies" );
         if (deps != null) {
             if (deps instanceof Map) {
-                Map<String, Object> mapDeps = asTypedMap( deps );
-                for (String dep : mapDeps.keySet()) {
+                final Map<String, Object> mapDeps = asTypedMap( deps );
+                for (final String dep : mapDeps.keySet()) {
                     dependencies.add( new Dependency().initialize( getName(), dep ) );
                 }
             }
             else if (deps instanceof List) {
-                for (Object dep : (List<?>) deps) {
+                for (final Object dep : (List<?>) deps) {
                     dependencies.add( new Dependency().initialize( getName(), dep ) );
                 }
             }
-            dependencies.add( new Dependency().initialize( getName(), (String) deps ) );
+            dependencies.add( new Dependency().initialize( getName(), deps ) );
             yamlMap.remove( "dependencies" );
         }
         else {
-            log.tracef( "No dependencies for field %s.", getName() );
+            log.trace( "No dependencies for field {}.", getName() );
         }
     }
 
@@ -126,7 +127,7 @@ public abstract class AbstractBaseType {
     }
 
     public void validate(DependencyIndexer index, Object yamlData) throws SchemaException {
-        log.debugf( "Validating type %s using value %s.", this.getClass(), yamlData );
+        log.debug( "Validating type {} using value {}.", this.getClass(), yamlData );
         if (yamlData == null && required) {
             throw new SchemaException( "Field " + name + " was required but is not present." );
         }
@@ -144,7 +145,7 @@ public abstract class AbstractBaseType {
 
     private void validateDependencies(DependencyIndexer indexer) throws SchemaException {
         if (indexer.isVerifyingDependencies()) {
-            for (Dependency dep : dependencies) {
+            for (final Dependency dep : dependencies) {
                 dep.validate( indexer );
             }
         }

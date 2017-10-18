@@ -19,8 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.logging.Logger;
 import org.projectodd.yaml.SchemaException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractCollectionType extends AbstractBaseType {
 
@@ -36,9 +37,9 @@ public abstract class AbstractCollectionType extends AbstractBaseType {
             throw new SchemaException( "value-types must be specified in map format." );
         }
         else {
-            Map<String, Object> yamlMap = (Map<String, Object>) yamlData;
-            for (String typeId : yamlMap.keySet()) {
-                log.debugf( "Adding value type: %s for field %s.", typeId, getName() );
+            final Map<String, Object> yamlMap = (Map<String, Object>) yamlData;
+            for (final String typeId : yamlMap.keySet()) {
+                log.debug( "Adding value type: {} for field {}.", typeId, getName() );
                 valueTypes.add( TypeFactory.instance().buildType( getName(), typeId, yamlMap.get( typeId ) ) );
             }
         }
@@ -48,6 +49,6 @@ public abstract class AbstractCollectionType extends AbstractBaseType {
         return valueTypes;
     }
 
-    private static final Logger log = Logger.getLogger( AbstractCollectionType.class );
+    private static final Logger log = LoggerFactory.getLogger( AbstractCollectionType.class );
 
 }

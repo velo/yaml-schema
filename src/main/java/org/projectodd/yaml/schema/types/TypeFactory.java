@@ -19,8 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jboss.logging.Logger;
 import org.projectodd.yaml.SchemaException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TypeFactory {
 
@@ -139,7 +140,7 @@ public class TypeFactory {
 
     private Map<String, Class<? extends AbstractBaseType>> types = new HashMap<String, Class<? extends AbstractBaseType>>( 50 );
 
-    private static Logger log = Logger.getLogger( TypeFactory.class );
+    private static Logger log = LoggerFactory.getLogger( TypeFactory.class );
 
     private static TypeFactory _instance = null;
 

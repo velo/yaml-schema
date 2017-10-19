@@ -26,7 +26,7 @@
   </parent>
   <groupId>com.marvinformatics</groupId>
   <artifactId>yaml-schema</artifactId>
-  <version>0.3-SNAPSHOT</version>
+  <version>0.1</version>
 
   <description>YAML schema library for Java</description>
 
